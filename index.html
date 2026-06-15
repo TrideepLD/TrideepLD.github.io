@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALEX_MORGAN // root@portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============ BOOT / INTRO SCREEN ============ -->
+  <div id="boot-screen" class="boot-screen">
+    <div class="scanlines"></div>
+    <div class="boot-terminal">
+      <p class="boot-line" data-text="&gt; SYSTEM CHECK ........ OK"></p>
+      <p class="boot-line" data-text="&gt; LOADING PROFILE ..... ALEX_MORGAN.DEV"></p>
+      <p class="boot-line" data-text="&gt; AUDIO MODULE ........ STANDBY"></p>
+      <p class="boot-line" data-text="&gt; RENDERING UI ........ DONE"></p>
+      <p class="boot-line" data-text="&gt; STATUS .............. READY"></p>
+      <button id="enter-btn" class="enter-btn" aria-label="Enter site">[ ENTER_SITE ]</button>
+      <p class="boot-hint">click to enter &mdash; enables ambient audio</p>
+    </div>
+  </div>
+
+  <!-- ============ BACKGROUND AMBIENT AUDIO ============ -->
+  <!-- Replace the src below with your own track, e.g. assets/ambient.mp3 -->
+  <audio id="bg-audio" loop preload="auto">
+    <source src="assets/ambient.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ============ MAIN SITE ============ -->
+  <div id="site" class="site">
+    <div class="scanlines scanlines--site"></div>
+
+    <header class="nav">
+      <div class="logo">ALEX<span class="logo-accent">_MORGAN</span><span class="cursor">_</span></div>
+
+      <nav class="tabs" role="tablist" aria-label="Site sections">
+        <button class="tab active" data-target="projects" role="tab" aria-selected="true">
+          <span class="tab-index">01</span> PROJECTS
+        </button>
+        <button class="tab" data-target="experience" role="tab" aria-selected="false">
+          <span class="tab-index">02</span> EXPERIENCE
+        </button>
+        <button class="tab" data-target="skills" role="tab" aria-selected="false">
+          <span class="tab-index">03</span> TOOLS &amp; SKILLS
+        </button>
+      </nav>
+
+      <button id="mute-btn" class="mute-btn" aria-label="Mute background audio" aria-pressed="false">
+        <svg class="icon icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="3 9 7 9 12 4 12 20 7 15 3 15 3 9"></polygon>
+          <path d="M16 8a5 5 0 0 1 0 8"></path>
+          <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+        </svg>
+        <svg class="icon icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polygon points="3 9 7 9 12 4 12 20 7 15 3 15 3 9"></polygon>
+          <line x1="17" y1="8" x2="23" y2="14"></line>
+          <line x1="23" y1="8" x2="17" y2="14"></line>
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <!-- ============ PROJECTS ============ -->
+      <section id="projects" class="panel active" role="tabpanel">
+        <div class="panel-head">
+          <h1 class="panel-title">PROJECTS</h1>
+          <p class="panel-sub">// a selection of things i've built</p>
+        </div>
+
+        <div class="card-grid">
+
+          <article class="card">
+            <header class="card-head">
+              <span class="card-tag">[ PROJECT_01 ]</span>
+              <h2 class="card-title">Pulse &mdash; Real-Time Analytics Dashboard</h2>
+              <div class="chip-row">
+                <span class="chip">React</span>
+                <span class="chip">Node.js</span>
+                <span class="chip">WebSockets</span>
+                <span class="chip">PostgreSQL</span>
+              </div>
+            </header>
+            <div class="card-body">
+              <p>
+                A live operations dashboard that streams event data from microservices
+                and renders it as interactive charts. Built to help small teams spot
+                anomalies before they become incidents, without needing a dedicated
+                observability stack.
+              </p>
+              <ul class="bullet-list">
+                <li>Sub-second updates via a WebSocket event bus handling ~5k msgs/sec</li>
+                <li>Custom charting layer built on top of D3 for full control over rendering</li>
+                <li>Role-based dashboards so engineers, support, and leadership each see relevant views</li>
+                <li>Alerting rules engine with configurable thresholds and notification channels</li>
+              </ul>
+              <p>
+                Lessons learned centered on backpressure handling and making sure the UI
+                stayed responsive even when the data firehose spiked during incidents.
+              </p>
+            </div>
+            <footer class="card-foot">
+              <a class="card-link" href="#" target="_blank" rel="noopener">view_repo &rarr;</a>
+              <a class="card-link" href="#" target="_blank" rel="noopener">live_demo &rarr;</a>
+            </footer>
+          </article>
+
+          <article class="card">
+            <header class="card-head">
+              <span class="card-tag">[ PROJECT_02 ]</span>
+              <h2 class="card-title">Routine &mdash; Habit & Focus Tracker</h2>
+              <div class="chip-row">
+                <span class="chip">TypeScript</span>
+                <span class="chip">Next.js</span>
+                <span class="chip">SQLite</span>
+                <span class="chip">PWA</span>
+              </div>
+            </header>
+            <div class="card-body">
+              <p>
+                A minimalist, offline-first habit and focus tracker designed for people
+                who find most productivity apps too noisy. Everything works without an
+                account, and data stays on-device by default.
+              </p>
+              <ul class="bullet-list">
+                <li>Installable PWA with full offline support and local-first storage</li>
+                <li>Streak tracking, daily focus timer, and weekly review prompts</li>
+                <li>Optional end-to-end encrypted sync between a user's own devices</li>
+                <li>Keyboard-first interaction model for rapid daily logging</li>
+              </ul>
+              <p>
+                The biggest design challenge was making sync conflict resolution invisible
+                to the user while still being reliable across flaky connections.
+              </p>
+            </div>
+            <footer class="card-foot">
+              <a class="card-link" href="#" target="_blank" rel="noopener">view_repo &rarr;</a>
+              <a class="card-link" href="#" target="_blank" rel="noopener">case_study &rarr;</a>
+            </footer>
+          </article>
+
+          <article class="card">
+            <header class="card-head">
+              <span class="card-tag">[ PROJECT_03 ]</span>
+              <h2 class="card-title">Terraform Landing Zone Toolkit</h2>
+              <div class="chip-row">
+                <span class="chip">Terraform</span>
+                <span class="chip">AWS</span>
+                <span class="chip">Python</span>
+                <span class="chip">CI/CD</span>
+              </div>
+            </header>
+            <div class="card-body">
+              <p>
+                A reusable set of Terraform modules and pipelines for spinning up secure,
+                multi-account AWS environments in under an hour, with sane defaults that
+                follow the AWS Well-Architected Framework.
+              </p>
+              <ul class="bullet-list">
+                <li>Modular VPC, IAM, logging, and networking baselines as versioned modules</li>
+                <li>Automated drift detection with scheduled plan-only pipeline runs</li>
+                <li>Policy-as-code guardrails enforced via pre-merge checks</li>
+                <li>Documentation generated automatically from module variables and outputs</li>
+              </ul>
+              <p>
+                Used internally to cut new-environment setup time from roughly two weeks
+                of manual work down to a single guided pipeline run.
+              </p>
+            </div>
+            <footer class="card-foot">
+              <a class="card-link" href="#" target="_blank" rel="noopener">view_repo &rarr;</a>
+              <a class="card-link" href="#" target="_blank" rel="noopener">docs &rarr;</a>
+            </footer>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ============ EXPERIENCE ============ -->
+      <section id="experience" class="panel" role="tabpanel">
+        <div class="panel-head">
+          <h1 class="panel-title">EXPERIENCE</h1>
+          <p class="panel-sub">// where i've worked and what i did there</p>
+        </div>
+
+        <div class="timeline">
+
+          <article class="timeline-entry">
+            <div class="timeline-meta">
+              <span class="timeline-date">2023 &mdash; PRESENT</span>
+            </div>
+            <div class="timeline-content">
+              <h2 class="card-title">Senior Software Engineer &mdash; Nova Systems</h2>
+              <p>
+                Lead engineer on a small platform team responsible for the internal
+                developer tooling used across four product squads. Focused on reducing
+                friction in build, deploy, and observability workflows.
+              </p>
+              <ul class="bullet-list">
+                <li>Redesigned the deployment pipeline, cutting average release time from 40 minutes to under 10</li>
+                <li>Introduced a self-service environment provisioning tool adopted by 30+ engineers</li>
+                <li>Mentored two junior engineers through promotion to mid-level roles</li>
+                <li>Drove migration of legacy services from EC2 to containerized workloads on EKS</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-entry">
+            <div class="timeline-meta">
+              <span class="timeline-date">2021 &mdash; 2023</span>
+            </div>
+            <div class="timeline-content">
+              <h2 class="card-title">Software Engineer &mdash; Brightline Labs</h2>
+              <p>
+                Full-stack engineer on a customer-facing analytics product, working across
+                the React frontend, Node API layer, and PostgreSQL data store.
+              </p>
+              <ul class="bullet-list">
+                <li>Built the core reporting module used by every paying customer account</li>
+                <li>Improved API response times by 60% through query optimization and caching</li>
+                <li>Owned the rollout of automated end-to-end testing, raising release confidence</li>
+                <li>Collaborated directly with design and product to ship a redesigned onboarding flow</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-entry">
+            <div class="timeline-meta">
+              <span class="timeline-date">2019 &mdash; 2021</span>
+            </div>
+            <div class="timeline-content">
+              <h2 class="card-title">Junior Developer &mdash; Hatchworks Studio</h2>
+              <p>
+                First role out of school, working on client web projects ranging from
+                marketing sites to small internal tools, across a fast-moving agency
+                environment.
+              </p>
+              <ul class="bullet-list">
+                <li>Delivered 10+ client websites from design handoff to production deployment</li>
+                <li>Built a shared component library that became the studio's default starting point</li>
+                <li>Picked up DevOps basics, setting up CI pipelines for several client repos</li>
+                <li>Learned to translate ambiguous client requests into concrete technical specs</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ============ TOOLS & SKILLS ============ -->
+      <section id="skills" class="panel" role="tabpanel">
+        <div class="panel-head">
+          <h1 class="panel-title">TOOLS &amp; SKILLS</h1>
+          <p class="panel-sub">// scroll the categories, then the toolbelt below</p>
+        </div>
+
+        <div class="skills-carousel">
+          <button class="carousel-arrow carousel-arrow--left" aria-label="Scroll skills left">&#10094;</button>
+
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="skills-track">
+
+              <div class="skill-card">
+                <h3 class="skill-card-title">Languages</h3>
+                <ul class="skill-list">
+                  <li>Python</li>
+                  <li>JavaScript / TypeScript</li>
+                  <li>Java</li>
+                  <li>Go</li>
+                  <li>C++</li>
+                </ul>
+              </div>
+
+              <div class="skill-card">
+                <h3 class="skill-card-title">Cloud &amp; Architecture</h3>
+                <ul class="skill-list">
+                  <li>AWS (EC2, Lambda, EKS)</li>
+                  <li>Azure (AD, App Service)</li>
+                  <li>Terraform</li>
+                  <li>Docker &amp; Kubernetes</li>
+                  <li>Event-driven design</li>
+                </ul>
+              </div>
+
+              <div class="skill-card">
+                <h3 class="skill-card-title">Frameworks &amp; Libraries</h3>
+                <ul class="skill-list">
+                  <li>React / Next.js</li>
+                  <li>Node.js / Express</li>
+                  <li>Django</li>
+                  <li>D3.js</li>
+                  <li>Tailwind CSS</li>
+                </ul>
+              </div>
+
+              <div class="skill-card">
+                <h3 class="skill-card-title">Data &amp; Tooling</h3>
+                <ul class="skill-list">
+                  <li>PostgreSQL / MySQL</li>
+                  <li>MongoDB &amp; Redis</li>
+                  <li>Git &amp; GitHub Actions</li>
+                  <li>Linux / Bash</li>
+                  <li>Figma (handoff &amp; prototyping)</li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="carousel-arrow carousel-arrow--right" aria-label="Scroll skills right">&#10095;</button>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span class="tool-badge"><span class="tool-glyph">PY</span>Python</span>
+            <span class="tool-badge"><span class="tool-glyph">JS</span>JavaScript</span>
+            <span class="tool-badge"><span class="tool-glyph">TS</span>TypeScript</span>
+            <span class="tool-badge"><span class="tool-glyph">&lt;/&gt;</span>React</span>
+            <span class="tool-badge"><span class="tool-glyph">▣</span>Node.js</span>
+            <span class="tool-badge"><span class="tool-glyph">🐳</span>Docker</span>
+            <span class="tool-badge"><span class="tool-glyph">☁</span>AWS</span>
+            <span class="tool-badge"><span class="tool-glyph">☁</span>Azure</span>
+            <span class="tool-badge"><span class="tool-glyph">⛭</span>Kubernetes</span>
+            <span class="tool-badge"><span class="tool-glyph">⌥</span>Terraform</span>
+            <span class="tool-badge"><span class="tool-glyph">▤</span>PostgreSQL</span>
+            <span class="tool-badge"><span class="tool-glyph">⬡</span>MongoDB</span>
+            <span class="tool-badge"><span class="tool-glyph">⌬</span>Redis</span>
+            <span class="tool-badge"><span class="tool-glyph">git</span>Git</span>
+            <span class="tool-badge"><span class="tool-glyph">_</span>Linux</span>
+
+            <!-- duplicate set for seamless loop -->
+            <span class="tool-badge"><span class="tool-glyph">PY</span>Python</span>
+            <span class="tool-badge"><span class="tool-glyph">JS</span>JavaScript</span>
+            <span class="tool-badge"><span class="tool-glyph">TS</span>TypeScript</span>
+            <span class="tool-badge"><span class="tool-glyph">&lt;/&gt;</span>React</span>
+            <span class="tool-badge"><span class="tool-glyph">▣</span>Node.js</span>
+            <span class="tool-badge"><span class="tool-glyph">🐳</span>Docker</span>
+            <span class="tool-badge"><span class="tool-glyph">☁</span>AWS</span>
+            <span class="tool-badge"><span class="tool-glyph">☁</span>Azure</span>
+            <span class="tool-badge"><span class="tool-glyph">⛭</span>Kubernetes</span>
+            <span class="tool-badge"><span class="tool-glyph">⌥</span>Terraform</span>
+            <span class="tool-badge"><span class="tool-glyph">▤</span>PostgreSQL</span>
+            <span class="tool-badge"><span class="tool-glyph">⬡</span>MongoDB</span>
+            <span class="tool-badge"><span class="tool-glyph">⌬</span>Redis</span>
+            <span class="tool-badge"><span class="tool-glyph">git</span>Git</span>
+            <span class="tool-badge"><span class="tool-glyph">_</span>Linux</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-line">&gt; if (open_to_opportunities &amp;&amp; you.have(idea)):</p>
+      <p class="footer-line">&gt;&nbsp;&nbsp;&nbsp;reach_out(me) &mdash; feel free to contact me here</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:hello@example.com">EMAIL</a>
+        <a class="contact-link" href="https://github.com/yourusername" target="_blank" rel="noopener">GITHUB</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/yourusername" target="_blank" rel="noopener">LINKEDIN</a>
+      </div>
+      <p class="footer-meta">&copy; 2026 ALEX_MORGAN &mdash; built with HTML, CSS &amp; JS</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
